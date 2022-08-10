@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle-Menu</title>
+
+    <style>
+      .modal{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="modal" class="modal">
+    </div>
+    <script>
+
+      window.addEventListener("message", (event) => {
+        var modal = document.getElementById('modal');
+        if(event.data.cursor == 'pointer'){
+        modal.style.cursor = 'pointer';
+        }
+        if(event.data.cursor == 'default'){
+          modal.style.cursor = 'default';
+        }
+      });
+
+      window.ondblclick = function(event){
+        overlayModal = document.getElementById('modal');
+        if(event.target == overlayModal){
+          var left = event.clientX; 
+          var _top = event.clientY; 
+          sendMessage({method:'dblclick',left: left, top: _top})
+      }
+    }
+    function sendMessage(data) {
+        window.parent.postMessage(data, "*");
+      }
+    
+    </script>
+  </body>
+</html>

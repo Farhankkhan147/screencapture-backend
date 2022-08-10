@@ -1,19 +1,22 @@
+
+
 module.exports = (sequelize, Sequelize) => {
-    const sites = sequelize.define("sites", {
-      site_id: {
+    const comments = sequelize.define("comments", {
+      comment_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      site_name: {
+      comment: {
         type: Sequelize.STRING,
         allowNull : false
       },
-      user_id: {
+      task_id: {
         type: Sequelize.INTEGER,
-      },
+      }
+
     });
   
-    return sites;
+    return comments;
   };
   
